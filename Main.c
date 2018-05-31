@@ -15,10 +15,39 @@
 * bools are checked and executed in order listed here when the robot starts; thus setting mc to true
 would cause all other bools to be irrelevant because it runs forever.
 */
-bool mc = true; //manualControl
+bool mc = false; //manualControl
 bool ava = false; //avatar
 bool allHail = false; //praiseTheSun
+bool programmedRove = true;
 
+/**
+* Executes the automatic, programmed rove that takes place at the beginning of the entire rove.
+* Drives to the lake, takes temperature, drives back to starting, finds the sun, then switches over 
+* to manual rove
+*/
+void noHands(int speed){
+	
+  //starts facing the lake, so go towards it (bottom right)
+	motor[LM] = -1 * speed;
+	motor[RM] = speed;
+	wait(1.5);
+
+	//take temperature
+	//collectTemperature();
+	wait(1); //uncomment this if temp running, vice versa
+
+	//turn around
+	motor[LM] = speed;
+	motor[RM] = speed;
+	wait(1);
+	
+	//go to the pond (upper right)
+	motor[LM] = -1 * speed;
+	motor[RM] = speed;
+	wait(1);
+	
+	
+}
 
 /**
 * Finds the brightest spot
@@ -130,7 +159,7 @@ void manualControl(int wheelMult, int armMult){
 		motor[RM] = wheelMult * vexRT[Ch2];
 
 		//backwards
-	  motor[RM] = wheelMult * vexRT[Ch4];
+	  	motor[RM] = wheelMult * vexRT[Ch4];
 		motor[LM] = wheelMult * vexRT[Ch4];
 
 		// Arm control
@@ -154,5 +183,8 @@ task main()
 	}
 	if(allHail){
 		praiseTheSun();
+	}
+	if(programmedRove){
+		noHands(40);
 	}
 }
