@@ -1,0 +1,4 @@
+Pinouts:
+(Vex) https://content.vexrobotics.com/docs/276-2194-Rev1-PINOUT.PDF
+(RPI) https://www.element14.com/community/servlet/JiveServlet/previewBody/73950-102-12-339300/pi3_gpio.png
+
