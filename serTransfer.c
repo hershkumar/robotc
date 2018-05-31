@@ -28,7 +28,7 @@ task main()
 	//send dummy data
 	char buf[9];
 	buf[0] = 't';
-	bnsSerialSend(UART1, buf, 9);
+	bnsSerialSend(UART1, buf);
 	writeDebugStream("Sent dummy data\n");
 
 	
